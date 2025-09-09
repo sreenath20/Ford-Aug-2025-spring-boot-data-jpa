@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Product {
+public class ElectronicsProduct {
     @Id
     private Integer id;
 
@@ -14,11 +14,13 @@ public class Product {
     private Double price;
     private Integer stock;
     private LocalDate manufacturingDate;
+    private String description;
 
-    public Product() {
+
+    public ElectronicsProduct() {
     }
 
-    public Product(Integer id, String name, Double price, Integer stock, LocalDate manufacturingDate) {
+    public ElectronicsProduct(Integer id, String name, Double price, Integer stock, LocalDate manufacturingDate) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -32,6 +34,14 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {
