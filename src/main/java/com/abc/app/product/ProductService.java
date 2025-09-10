@@ -13,4 +13,5 @@ public interface ProductService {
     Collection<ElectronicsProduct> getAllProducts() throws ProductException;
 
 
+    Collection<ElectronicsProduct> getAllProductsByName(String name) throws ProductException;
 }

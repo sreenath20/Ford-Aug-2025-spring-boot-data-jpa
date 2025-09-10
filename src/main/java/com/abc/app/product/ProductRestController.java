@@ -36,4 +36,9 @@ public class ProductRestController {
         return this.productService.getAllProducts();
     }
 
+    @GetMapping("/name/{name}")
+    public Collection<ElectronicsProduct> getAllProductsByName(@PathVariable String name) throws ProductException {
+        return this.productService.getAllProductsByName(name);
+    }
+
 }

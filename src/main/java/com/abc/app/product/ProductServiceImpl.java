@@ -23,7 +23,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ElectronicsProduct addNewProduct(ElectronicsProduct newProduct) throws ProductException {
-
         return this.productRepository.save(newProduct);
     }
 
@@ -53,4 +52,14 @@ public class ProductServiceImpl implements ProductService {
     public Collection<ElectronicsProduct> getAllProducts() throws ProductException {
         return this.productRepository.findAll();
     }
+
+    @Override
+    public Collection<ElectronicsProduct> getAllProductsByName(String name) throws ProductException {
+        //return this.productRepository.findByName(name); // exact name
+//        return this.productRepository.findByNameContaining(name); // substring
+        // return this.productRepository.findByNameContainingOrderByPriceDesc(name); // find substring in name and order by price desc
+//        return this.productRepository.findByNameContainingIgnoreCaseOrderByPriceDesc(name); // ignores case
+        return this.productRepository.serachByNameContainingOrderByPriceAsc(name);
+    }
+
 }
