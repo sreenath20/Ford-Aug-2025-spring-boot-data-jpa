@@ -14,4 +14,6 @@ public interface ProductService {
 
 
     Collection<ElectronicsProduct> getAllProductsByName(String name) throws ProductException;
+
+    ElectronicsProduct deleteProductById(Integer id)throws ProductException ;
 }

@@ -41,4 +41,10 @@ public class ProductRestController {
         return this.productService.getAllProductsByName(name);
     }
 
+    @DeleteMapping("/{id}")
+    public ElectronicsProduct deleteProductById(@PathVariable Integer id) throws ProductException {
+        return this.productService.deleteProductById(id);
+    }
+
+
 }

@@ -2,6 +2,7 @@ package com.abc.app.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
@@ -60,6 +61,18 @@ public class ProductServiceImpl implements ProductService {
         // return this.productRepository.findByNameContainingOrderByPriceDesc(name); // find substring in name and order by price desc
 //        return this.productRepository.findByNameContainingIgnoreCaseOrderByPriceDesc(name); // ignores case
         return this.productRepository.serachByNameContainingOrderByPriceAsc(name);
+    }
+
+    @Override
+    @Transactional
+    public ElectronicsProduct deleteProductById(Integer id) throws ProductException {
+        Optional<ElectronicsProduct> productOpt = this.productRepository.findById(id);
+        if (productOpt.isEmpty())
+            throw new ProductException("Product does not exists to delete id:" + id);
+        ElectronicsProduct deleteProduct = productOpt.get();
+//        this.productRepository.delete(deleteProduct); // built in method
+        this.productRepository.deleteProductById(id); // custom method
+        return deleteProduct;
     }
 
 }
