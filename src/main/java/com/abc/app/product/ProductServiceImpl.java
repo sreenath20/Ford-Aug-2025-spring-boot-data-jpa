@@ -59,8 +59,8 @@ public class ProductServiceImpl implements ProductService {
         //return this.productRepository.findByName(name); // exact name
 //        return this.productRepository.findByNameContaining(name); // substring
         // return this.productRepository.findByNameContainingOrderByPriceDesc(name); // find substring in name and order by price desc
-//        return this.productRepository.findByNameContainingIgnoreCaseOrderByPriceDesc(name); // ignores case
-        return this.productRepository.serachByNameContainingOrderByPriceAsc(name);
+        return this.productRepository.findByNameContainingIgnoreCaseOrderByPriceDesc(name); // ignores case
+       // return this.productRepository.serachByNameContainingOrderByPriceAsc(name);
     }
 
     @Override

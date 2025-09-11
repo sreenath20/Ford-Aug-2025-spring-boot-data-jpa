@@ -13,7 +13,7 @@ public class ElectronicsProduct {
 
     @NotBlank(message = "Product name should not be null, Empty, white spaces.")
   //  @Size(min = 5, max = 100, message = "product Name must be min 5 and max 100 char length")
-    @Pattern(regexp = "^[a-zA-Z0-9]{6,12}$",
+    @Pattern(regexp = "^[a-zA-Z0-9 ]{6,12}$",
             message = "Username must be 6-12 characters long and contain only letters and numbers.")
     private String name;
 

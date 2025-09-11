@@ -23,6 +23,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	runtimeOnly("com.h2database:h2")
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
+	// http://localhost:8080/swagger-ui/index.html
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
+// Use the latest compatible version
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
