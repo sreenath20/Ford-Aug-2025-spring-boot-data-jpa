@@ -2,6 +2,9 @@ package com.abc.app.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -10,7 +13,10 @@ public class ElectronicsProduct {
     @Id
     private Integer id;
 
+    @NotNull(message = "Product name should not be null")
+    @Size(min = 5, max = 100, message = "product Name must be min 5 and max 100 char length")
     private String name;
+    @Min(value = 1,message = "Product price must be greater than 0.")
     private Double price;
     private Integer stock;
     private LocalDate manufacturingDate;

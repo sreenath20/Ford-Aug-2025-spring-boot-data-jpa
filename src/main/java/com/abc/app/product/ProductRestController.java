@@ -1,5 +1,6 @@
 package com.abc.app.product;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class ProductRestController {
     }
 
     @PostMapping
-    public ElectronicsProduct addNewProduct(@RequestBody ElectronicsProduct newProduct) throws ProductException {
+    public ElectronicsProduct addNewProduct(@Valid @RequestBody ElectronicsProduct newProduct) throws ProductException {
         return this.productService.addNewProduct(newProduct);
     }
 
