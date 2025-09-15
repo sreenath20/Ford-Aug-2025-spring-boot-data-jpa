@@ -1,8 +1,10 @@
 package com.abc.app.jpa_mappings;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 import javax.annotation.processing.Generated;
 
@@ -10,14 +12,21 @@ import javax.annotation.processing.Generated;
 public class Aadhar {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Integer id; // name of primary key in aadhar table
     private String aadharNo;
 
     public Aadhar() {
     }
 
-    public Aadhar(Integer id, String aadharNo) {
-        this.id = id;
+    // By directional mapping
+    // mappedBy will avoid creation of foreigh key to employee
+    @OneToOne(mappedBy = "aadhar")
+    // there will recursion by Jakson lib
+    // to avoid add @JsonIgnore
+    @JsonIgnore
+    private Employee employee;
+
+    public Aadhar(String aadharNo) {
         this.aadharNo = aadharNo;
     }
 
@@ -35,5 +44,13 @@ public class Aadhar {
 
     public void setAadharNo(String aadharNo) {
         this.aadharNo = aadharNo;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

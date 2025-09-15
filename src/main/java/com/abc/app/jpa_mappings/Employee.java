@@ -13,13 +13,15 @@ public class Employee {
 
 
     @OneToOne(cascade = CascadeType.ALL)
+    // create fk column in employee table
+    @JoinColumn(name = "aaddhar_Id",referencedColumnName = "id")
     private Aadhar aadhar;
 
     public Employee() {
     }
 
-    public Employee(Integer id, String name, Double salary) {
-        this.id = id;
+    public Employee(String name, Double salary) {
+
         this.name = name;
         this.salary = salary;
     }
