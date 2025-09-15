@@ -29,5 +29,10 @@ public class ProductRestControllerAdvice {
         return errorsMap;
     }
 
+    @ExceptionHandler(Exception.class)
+    public String genericExceptionHandler(Exception e) {
+        return e.getMessage();
+    }
+
 
 }

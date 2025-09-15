@@ -1,5 +1,7 @@
 package com.abc.app.product;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +10,8 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/product")
+@Tag(name = "Product Management", description = "Operations related to product.")
+
 public class ProductRestController {
 
     private final ProductService productService;
@@ -18,6 +22,8 @@ public class ProductRestController {
     }
 
     @PostMapping
+    @Operation(summary = "Add new product", description = "Add new product to system.")
+
     public ElectronicsProduct addNewProduct(@Valid @RequestBody ElectronicsProduct newProduct) throws ProductException {
         return this.productService.addNewProduct(newProduct);
     }
