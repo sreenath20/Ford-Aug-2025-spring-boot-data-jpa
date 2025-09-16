@@ -32,11 +32,12 @@ public class DepartmentController {
     }
 
     @GetMapping("/{id}")
-    public String getDepartmentById(@PathVariable Integer id) throws Exception {
+    public Department getDepartmentById(@PathVariable Integer id) throws Exception {
         //
 //        return this.departmentRepo.findById(id)
 //                .orElseThrow(() -> new Exception("Department not found."));
-        return this.departmentService.getDepartmentById(id);
+        Department department= this.departmentService.getDepartmentById(id);
+        return department;
     }
 
     @GetMapping("/lazy/{id}")

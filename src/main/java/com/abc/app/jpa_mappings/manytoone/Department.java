@@ -1,5 +1,6 @@
 package com.abc.app.jpa_mappings.manytoone;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Department {
     private String location;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   // @JsonIgnore
     private List<Project> projects = new ArrayList<>();
 
     public Department() {
