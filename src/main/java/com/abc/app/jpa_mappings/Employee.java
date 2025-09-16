@@ -1,5 +1,6 @@
 package com.abc.app.jpa_mappings;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,7 +16,9 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL)
     // create fk column in employee table
     @JoinColumn(name = "aaddhar_Id",referencedColumnName = "id")
+    @JsonManagedReference
     private Aadhar aadhar;
+
 
     public Employee() {
     }

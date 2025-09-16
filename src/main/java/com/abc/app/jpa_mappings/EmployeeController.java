@@ -46,13 +46,16 @@ public class EmployeeController {
     }
 
     @GetMapping("/aadhar/{aadharId}")
-    public Employee getAadharById(@PathVariable("aadharId") Integer aadharId) throws Exception {
+    public Aadhar getAadharById(@PathVariable("aadharId") Integer aadharId) throws Exception {
         // check if employee is fetched along with aadhar
 
-        Aadhar founAadhar = this.aadharRepository.findById(aadharId).
+//        Aadhar founAadhar = this.aadharRepository.findById(aadharId).
+//                orElseThrow(() -> new Exception("Employee id does not exists"));
+//
+//        Employee employee = founAadhar.getEmployee();
+//        return employee;
+        return this.aadharRepository.findById(aadharId).
                 orElseThrow(() -> new Exception("Employee id does not exists"));
 
-        Employee employee = founAadhar.getEmployee();
-        return employee;
     }
 }

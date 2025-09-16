@@ -1,5 +1,6 @@
 package com.abc.app.jpa_mappings;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +24,8 @@ public class Aadhar {
     @OneToOne(mappedBy = "aadhar")
     // there will recursion by Jakson lib
     // to avoid add @JsonIgnore
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonBackReference
     private Employee employee;
 
     public Aadhar(String aadharNo) {
