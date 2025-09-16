@@ -26,6 +26,13 @@ public class Department {
         this.projects = projects;
     }
 
+    // helper method to add project to department
+    public void addProjectToDepartment(Project project) {
+        project.setDepartment(this);
+        //  this.projects.add(project);
+
+    }
+
     public Integer getId() {
         return id;
     }

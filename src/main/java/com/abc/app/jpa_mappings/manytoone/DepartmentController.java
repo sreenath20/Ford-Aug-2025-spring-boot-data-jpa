@@ -15,16 +15,35 @@ public class DepartmentController {
     @Autowired
     private ProjectRepo projectRepo;
 
+    @Autowired
+    private DepartmentService departmentService;
+
     @PostMapping
     public Department addNewDepartment(@RequestBody Department department) {
 
+        if (department.getProjects() != null) {
+            department.getProjects().forEach((p) -> p.setDepartment(department));
+            // With helper method
+//            for (Project project : department.getProjects()) {
+//                department.addProjectToDepartment(project);
+//            }
+        }
         return this.departmentRepo.save(department);
     }
 
     @GetMapping("/{id}")
-    public Department getDepartmentById(@PathVariable Integer id) throws Exception {
-        return this.departmentRepo.findById(id)
+    public String getDepartmentById(@PathVariable Integer id) throws Exception {
+        //
+//        return this.departmentRepo.findById(id)
+//                .orElseThrow(() -> new Exception("Department not found."));
+        return this.departmentService.getDepartmentById(id);
+    }
+
+    @GetMapping("/lazy/{id}")
+    public String getDepartmentByIdWithOutProjects(@PathVariable Integer id) throws Exception {
+        Department department = this.departmentRepo.findById(id)
                 .orElseThrow(() -> new Exception("Department not found."));
+        return department.getName(); // send dept info thru dto
     }
 
     @PostMapping("/{deptId}/project")
