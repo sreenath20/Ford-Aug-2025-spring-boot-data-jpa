@@ -58,7 +58,6 @@ public class DepartmentController {
     @DeleteMapping("/{id}")
     public Department deleteDepartmentById(@PathVariable Integer id) throws Exception {
         Department foundDepartment = this.departmentRepo.findById(id).orElseThrow(() -> new Exception("Department not found."));
-
         this.departmentRepo.delete(foundDepartment);
         return foundDepartment;
     }

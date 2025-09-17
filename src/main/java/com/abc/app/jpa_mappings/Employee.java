@@ -1,7 +1,13 @@
 package com.abc.app.jpa_mappings;
 
+import com.abc.app.jpa_mappings.manytoone.Project;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -19,6 +25,10 @@ public class Employee {
     @JsonManagedReference
     private Aadhar aadhar;
 
+    @ManyToMany(mappedBy = "employees")
+//    @JsonBackReference
+    @JsonIgnore
+    private List<Project> projects = new ArrayList<>();
 
     public Employee() {
     }
@@ -59,5 +69,13 @@ public class Employee {
 
     public void setAadhar(Aadhar aadhar) {
         this.aadhar = aadhar;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }

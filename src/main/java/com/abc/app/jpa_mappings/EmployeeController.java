@@ -41,8 +41,10 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public Employee getEmployeeById(@PathVariable("id") Integer employeeId) throws Exception {
-        return this.employeeRepository.findById(employeeId).
+        Employee foundEmployee = this.employeeRepository.findById(employeeId).
                 orElseThrow(() -> new Exception("Employee id does not exists"));
+        foundEmployee.getProjects().size(); // fetch projects from lazy loading proxy
+        return foundEmployee;
     }
 
     @GetMapping("/aadhar/{aadharId}")

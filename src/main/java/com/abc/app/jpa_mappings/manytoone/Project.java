@@ -1,7 +1,12 @@
 package com.abc.app.jpa_mappings.manytoone;
 
+import com.abc.app.jpa_mappings.Employee;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Project {
@@ -16,6 +21,18 @@ public class Project {
     @JoinColumn(name = "department_id")
     @JsonIgnore
     private Department department;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "project_emp",
+            joinColumns =
+            @JoinColumn(name = "prj_id", referencedColumnName = "ID"),
+            inverseJoinColumns =
+            @JoinColumn(name = "emp_id", referencedColumnName = "ID")
+    )
+//    @JsonManagedReference
+//    @JsonIgnore
+    private List<Employee> employees = new ArrayList<>();
+
 
     public Project() {
     }
@@ -57,5 +74,13 @@ public class Project {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

@@ -11,8 +11,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentRepo departmentRepo;
 
     @Override
-//    @Transactional
+    @Transactional
     public Department getDepartmentById(Integer id) throws Exception {
+        // save point
+        // JPA session starts
+        // if any exception happens it will roll back to save point
         // hibernate session starts
 //        Department department =
                return  this.departmentRepo.findById(id)
@@ -20,6 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
        // department.getProjects().size();// explictly accessing projects
 //        return department.getName();
+        // commit changes to DB
         //hibernate session ends
     }
 }
