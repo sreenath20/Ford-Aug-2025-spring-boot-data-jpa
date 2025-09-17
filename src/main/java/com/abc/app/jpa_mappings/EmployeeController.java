@@ -1,8 +1,11 @@
 package com.abc.app.jpa_mappings;
 
+import com.abc.app.jpa_mappings.manytoone.Project;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -47,6 +50,13 @@ public class EmployeeController {
         return foundEmployee;
     }
 
+    @GetMapping("/{id}/projects")
+    public List<Project> getEmployeeProjetsByEmpId(@PathVariable("id") Integer employeeId) throws Exception {
+        Employee foundEmployee = this.employeeRepository.findById(employeeId).
+                orElseThrow(() -> new Exception("Employee id does not exists"));
+       // foundEmployee.getProjects().size(); // fetch projects from lazy loading proxy
+        return foundEmployee.getProjects();
+    }
     @GetMapping("/aadhar/{aadharId}")
     public Aadhar getAadharById(@PathVariable("aadharId") Integer aadharId) throws Exception {
         // check if employee is fetched along with aadhar
