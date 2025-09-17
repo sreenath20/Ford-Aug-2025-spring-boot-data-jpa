@@ -25,7 +25,7 @@ public class Employee {
     @JsonManagedReference
     private Aadhar aadhar;
 
-    @ManyToMany(mappedBy = "employees")
+    @ManyToMany(mappedBy = "employees",fetch = FetchType.EAGER)
 //    @JsonBackReference
     @JsonIgnore
     private List<Project> projects = new ArrayList<>();
@@ -37,6 +37,14 @@ public class Employee {
 
         this.name = name;
         this.salary = salary;
+    }
+
+    public Employee(Integer id, String name, Double salary, Aadhar aadhar, List<Project> projects) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.aadhar = aadhar;
+        this.projects = projects;
     }
 
     public Integer getId() {
@@ -78,4 +86,17 @@ public class Employee {
     public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                ", aadhar=" + aadhar +
+                '}';
+    }
+
+
+
 }

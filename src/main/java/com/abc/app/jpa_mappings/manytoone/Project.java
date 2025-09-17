@@ -22,7 +22,7 @@ public class Project {
     @JsonIgnore
     private Department department;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)//, cascade = CascadeType.ALL)
     @JoinTable(name = "project_emp",
             joinColumns =
             @JoinColumn(name = "prj_id", referencedColumnName = "ID"),
@@ -82,5 +82,15 @@ public class Project {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", budget=" + budget +
+                ", department=" + department +
+                '}';
     }
 }
